@@ -50,6 +50,6 @@ public class Station extends AbstractStation{
      * @param train
      */
     public void releaseTrain(Train train){
-        if()
+        if(this.currentTrain.getId() == train.getId()) this.currentTrain = null;
     }
 }

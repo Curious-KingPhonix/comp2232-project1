@@ -19,6 +19,9 @@ public class Train implements Verifiable {
     private int id , timeRegistered , startTime;
     private Station currentLocation;
 
+    public int getId() {
+        return id;
+    }
     public boolean isRegistered(){return true;}
     public boolean whenRegistered(){return true;}
     public int register(int time){return 0;}
