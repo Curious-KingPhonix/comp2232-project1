@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package p1;
+package p1.utility;
 
 public interface Verifiable {
     public boolean verify();

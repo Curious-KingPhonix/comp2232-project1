@@ -17,6 +17,9 @@ package p1;
 import java.util.ArrayList;
 import java.util.List;
 
+import p1.utility.Searcher;
+import p1.utility.Verifiable;
+
 public class TrainSystem implements Verifiable{
     private ArrayList<Route> routes;
     private ArrayList<Station> stations;
@@ -27,7 +30,7 @@ public class TrainSystem implements Verifiable{
     // private HashMap<Pair<Station,Station>,Segment> routesTree;
 
     public void addStation(String name){
-        this.stations.add(new Station(name));
+        this.stations.add(new Station(name,RSStatus.Open,null,null));
     }
     public void removeStation(String name){
         Searcher.remove(this.stations, name);
@@ -39,7 +42,7 @@ public class TrainSystem implements Verifiable{
         Searcher.close(this.stations, name);
     }
     public void addSegment(String name){
-        this.segments.add(new Segment(name));
+        this.segments.add(new Segment(name,RSStatus.Open,null,null));
     }
     public void removeSegment(String name){
         Searcher.remove(this.segments, name);
@@ -51,7 +54,7 @@ public class TrainSystem implements Verifiable{
         Searcher.close(this.segments, name);
     }
     public void addRoute(String name){
-        this.routes.add(new Route(name));
+        this.routes.add(new Route(name,RSStatus.Open,null));
     }
     public void removeRoute(String name){
         Searcher.remove(this.stations, name);

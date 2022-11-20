@@ -14,18 +14,20 @@
 
 package p1;
 
-public class Segment extends TrafficLight implements Comparable<Segment>{
+import p1.utility.AbstractStation;
+import p1.utility.LightListener;
+
+public class Segment extends AbstractStation implements Comparable<Segment> , LightListener{
     private Station startStation , endStation;
-    
-    public Segment(String name, RSStatus status, Station startStation, Station endStation) {
-        super(name, status);
-        this.startStation = startStation;
-        this.endStation = endStation;
+    private TrafficLight trafficLight;
+
+    public Segment(String name, RSStatus status, TrainSystem trainSystem, Train currentTrain) {
+        super(name, status, trainSystem, currentTrain);
     }
 
-    public Segment(String name) {
-        super(name);
-    }
+    @Override public void changeLight() {this.trafficLight.change();};
+
+    @Override public boolean lightColour() {return (this.trafficLight.getColour()==Light.Green);}
 
     public Station getStartStation() {
         return startStation;
@@ -37,8 +39,8 @@ public class Segment extends TrafficLight implements Comparable<Segment>{
         boolean superVar = super.verify() &&
         this.startStation.verify() && this.endStation.verify() &&
         !this.startStation.equals(this.endStation) 
-        && this.startStation.status == this.endStation.status 
-        && this.startStation.status == RSStatus.Open;
+        && this.startStation.getStatus() == this.endStation.getStatus() 
+        && this.startStation.getStatus() == RSStatus.Open;
         return superVar;
     }
     /**
@@ -48,5 +50,9 @@ public class Segment extends TrafficLight implements Comparable<Segment>{
      */
     @Override public int compareTo(Segment o) {
         return ((this.name == o.name || this.startStation == o.startStation && this.endStation == o.endStation)?1:0);
+    }
+
+    public TrafficLight getTrafficLight() {
+        return trafficLight;
     }
 }

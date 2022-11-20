@@ -18,16 +18,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Route extends TrainStop {
+import p1.utility.StationAttributes;
+
+public class Route extends StationAttributes {
+    
     private ArrayList<Segment> segemnts;
     private ArrayList<Station> stations;
+    private Station startStation;
+    private Station endStation;
     
-    public Route(String name) {
-        super(name);
-    }
-
-    public Route(String name, RSStatus status) {
-        super(name, status);
+    public Route(String name, RSStatus status, TrainSystem trainSystem) {
+        super(name, status, trainSystem);
     }
     
     /**
@@ -73,7 +74,7 @@ public class Route extends TrainStop {
     public Station getNextStation(String station){
         Station nextStation = null;
         for(int i = this.stations.size() - 1; i >= 0 ; i--){
-            if(this.stations.get(i).name ==  station) break; 
+            if(this.stations.get(i).getName() ==  station) break; 
             nextStation = this.stations.get(i);
         }
         return nextStation;
@@ -86,7 +87,7 @@ public class Route extends TrainStop {
     public Station getPreviousStation(String station){
         Station prevStation = null;
         for (Station stat : this.stations) {
-            if(stat.name ==  station) break; 
+            if(stat.getName() ==  station) break; 
             prevStation = stat;
         }
         return prevStation;
@@ -96,7 +97,7 @@ public class Route extends TrainStop {
      * @param station the {@code Station} to be reached.
      * @return true if the {@code Route} contains this {@code Station}, otherwise false.
      */
-    public boolean canGetTo(String station){return this.stations.stream().anyMatch((t)->{return (t.name == station);});}
+    public boolean canGetTo(String station){return this.stations.stream().anyMatch((t)->{return (t.getName() == station);});}
     /**
      * Returns the list of stations in this {@code Route}.
      * @return an {@code ArrayList} of @{code Station} which are present in this {@code Route}.
@@ -133,7 +134,7 @@ public class Route extends TrainStop {
     public void removeSegment(String segment){
         Segment searchSegment = null;
         for(Segment seg : this.segemnts){
-            if( seg.name == segment){
+            if( seg.getName() == segment){
                 searchSegment = seg;
                 break;
             }
@@ -151,7 +152,7 @@ public class Route extends TrainStop {
      */
     public boolean containsSegment(String segment){
         for (Segment seg : segemnts) {
-            if(seg.name == segment) return true;
+            if(seg.getName() == segment) return true;
         }
         return false;
     };
@@ -161,7 +162,7 @@ public class Route extends TrainStop {
      */
     public void changeLight(String startOfSegment){
         for (Segment segment : segemnts) {
-            if(segment.name == startOfSegment){
+            if(segment.getName() == startOfSegment){
                 segment.changeLight();
             }
         }

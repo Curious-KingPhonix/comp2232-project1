@@ -14,6 +14,8 @@
 
 package p1;
 
+import p1.utility.Verifiable;
+
 public class Train implements Verifiable {
     private Route route;
     private int id , timeRegistered , startTime;

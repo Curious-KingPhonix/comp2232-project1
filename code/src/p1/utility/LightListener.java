@@ -12,14 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package p1;
+package p1.utility;
 
-public abstract class TrainStop extends AbstractStation{
-    protected Station startStation , endStation;
-    public TrainStop(String name) {
-        super(name);
-    }
-    public TrainStop(String name, RSStatus status) {
-        super(name, status);
-    }
+public interface LightListener {
+    public void changeLight();
+    public boolean lightColour();
 }

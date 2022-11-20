@@ -14,26 +14,18 @@
 
 package p1;
 
-public class TrafficLight extends Station{
+import p1.utility.Verifiable;
+
+public class TrafficLight implements Verifiable{
     private int id;
     private Light colour;
     
-    public TrafficLight(String name, RSStatus status, int id, Light colour) {
-        super(name, status);
-        this.id = id;
-        this.colour = colour;
+    public int getId() {
+        return id;
     }
-
-    public TrafficLight(String name, RSStatus status) {
-        super(name, status);
+    public Light getColour() {
+        return colour;
     }
-    
-    public TrafficLight(String name) {
-        super(name);
-    }
-
     protected void change(){if(this.colour == Light.Red) this.colour=Light.Green; else this.colour = Light.Red; }
-    public void changeLight() {this.change();};
-    public boolean lightColour(){return (this.colour==Light.Green);}
     @Override public boolean verify() {return (colour != null);}
 }

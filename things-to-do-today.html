@@ -1,4 +1,4 @@
-// Copyright 2022 Kyle King
+<!-- // Copyright 2022 Kyle King
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -11,15 +11,93 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
+ -->
 <html>
+<body>
+    <style>
+        ul{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+        }
+        ul li {margin-top: 5px;
+            font-size: 40px;
+            transition: 0.5s;
+            text-decoration: none;
+            list-style: none;
+            overflow: hidden;
+
+        }
+        li label ,input{
+            cursor: pointer;
+        }
+        label{
+            display: inline-flex;
+            align-items: center;
+        }
+        input{
+            width:40px;
+            height: 40px;
+            margin-right:10px;
+        }
+        ul li:hover{
+            transform: translateY(-5px);
+        }
+        ul input:checked,label:focus{
+            
+        }
+    </style>
+    <h1 style="padding-left:35vw; font-size:72px;"> To-Do List</h1>
     <ul>
-        <li>Resolve Inheritance vs Composition & Aggregation problems where nessasry</li>
-        <li>In Station.java, Station might contain 1 or many trains</li>
-        <li>In Segment.java,Must add functionality to remove loops such as {Station A, Station A}</li>
-        <li>Object.equals() needs to be extended</li>
-        <li>Must create factory functions for Station,Route & Segment.</li>
-        <li>Optimize all validation/verfication of any object in the project space.</li>
-        <li>Write testcases for all integration test using JUnit.</li>
+        <li>
+            <label for="check">
+                <input type="checkbox" name="check" id="">
+                Resolve Inheritance vs Composition & Aggregation problems where nessasry
+            </label>
+        </li>
+        <li>
+            <label for="check">
+                <input type="checkbox" name="check" id="">
+            In Station.java, Station might contain 1 or many trains
+            </label>
+        </li>
+        <li>
+            <label for="check">
+                <input type="checkbox" name="check" id="">
+            In Segment.java,Must add functionality to remove loops such as {Station A, Station A}
+            </label>
+        </li>
+        <li>
+            <label for="check">
+                <input type="checkbox" name="check" id="">
+            Object.equals() needs to be extended
+            </label>
+        </li>
+        <li>
+            <label for="check">
+                <input type="checkbox" name="check" id="">
+            Must create factory functions for Station,Route & Segment.
+            </label>
+        </li>
+        <li>
+            <label for="check">
+                <input type="checkbox" name="check" id="">
+            Optimize all validation/verfication of any object in the project space.
+            </label>
+        </li>
+        <li>
+            <label for="check">
+                <input type="checkbox" name="check" id="">
+            Write testcases for all integration test using JUnit.
+            </label>
+        </li>
+        <li>
+            <label for="check">
+                <input type="checkbox" name="check" id="">
+            Implement UI for testing.
+            </label>
+        </li>
     </ul>
+</body>
 </html>
