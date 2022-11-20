@@ -159,18 +159,30 @@ public class Route extends TrainStop {
         }
     };
     /**
-     * 
+     * Validates object.
+     * @return true of object is valid.
      */
     @Override public boolean verify() {
         return super.verify() &&
         segemnts.stream().allMatch((segment)->{return segment.verify();}) &&
         !this.isRoundTrip();
     }
+    /**
+     * Closes the route.
+     * @retunrs true if the object is being closed. otherwise false.
+     */
     @Override public boolean close() {
-
-        return false;
+        if(this.status == RSStatus.ClosedForMaintenance) return false;
+        this.status = RSStatus.ClosedForMaintenance;
+        return true;
     }
+    /**
+     * Opens the route.
+     * @retunrs true if the object is being opened. otherwise false.
+     */
     @Override public boolean open() {
-        return false;
+        if(this.status == RSStatus.Open) return false;
+        this.status = RSStatus.Open;
+        return true;
     } 
 }
