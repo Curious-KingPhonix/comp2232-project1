@@ -21,18 +21,23 @@ public abstract class AbstractStation implements Verifiable{
     public AbstractStation() {
         this.IN_USE = false;
     }
-
     public AbstractStation(String name) {
         this.name = name;
         this.status = RSStatus.Open;
     }
-
     public AbstractStation(String name, RSStatus status) {
         this.name = name;
         this.status = status;
     }
-    
     public boolean verify(){ return (name.isBlank() || name.isEmpty() ); };
-    abstract public boolean close();
-    abstract public boolean open();
+     public boolean close(){
+        if(this.status == RSStatus.ClosedForMaintenance) return false;
+        this.status = RSStatus.ClosedForMaintenance;
+        return true;
+     }
+     public boolean open(){
+        if(this.status == RSStatus.Open) return false;
+        this.status = RSStatus.Open;
+        return true;
+     }
 }

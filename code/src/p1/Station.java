@@ -15,19 +15,41 @@
 package p1;
 
 public class Station extends AbstractStation{
-    
+    private Train currentTrain;
     public Station(String name, RSStatus status) {
         super(name, status);
     }
-    
     public Station(String name) {
         super(name);
     }
+    /**
+     * Checks if there's a train occupying this station or stop.
+     * @return true if a train is currently docked in this station; otherwise, false.
+     */
+    public boolean hasTrain(){
+        return (currentTrain == null);
+    }
+    /**
+     * Checks if this station is open.
+     * @return true if the station is open ; otherwise, false.
+     */
+    public boolean isOpen(){
+        return this.status == RSStatus.Open;
+    }
 
-    public boolean hasTrain(){return false;}
-    public boolean isOpen(){return false;}
-    public void acceptTrain(Train train){}
-    public void releaseTrain(Train train){}
-    @Override public boolean close() {return false;}
-    @Override public boolean open() {return false;}
+    /**
+     * Sets a train as docked in this station.
+     * @param train train to docked.
+     */
+    public void acceptTrain(Train train){
+        if( this.currentTrain != null ) return;
+        this.currentTrain = train;
+    }
+    /**
+     * Removes train as docked in this station.
+     * @param train
+     */
+    public void releaseTrain(Train train){
+        if()
+    }
 }

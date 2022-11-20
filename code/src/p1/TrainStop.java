@@ -16,15 +16,10 @@ package p1;
 
 public abstract class TrainStop extends AbstractStation{
     protected Station startStation , endStation;
-
-    
     public TrainStop(String name) {
         super(name);
     }
-
-
     public TrainStop(String name, RSStatus status) {
         super(name, status);
     }
-    
 }

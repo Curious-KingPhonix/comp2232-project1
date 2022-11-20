@@ -179,18 +179,4 @@ public class Route extends TrainStop {
      * Closes the route.
      * @retunrs true if the object is being closed. otherwise false.
      */
-    @Override public boolean close() {
-        if(this.status == RSStatus.ClosedForMaintenance) return false;
-        this.status = RSStatus.ClosedForMaintenance;
-        return true;
-    }
-    /**
-     * Opens the route.
-     * @retunrs true if the object is being opened. otherwise false.
-     */
-    @Override public boolean open() {
-        if(this.status == RSStatus.Open) return false;
-        this.status = RSStatus.Open;
-        return true;
-    } 
 }
