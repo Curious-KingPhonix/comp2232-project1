@@ -15,19 +15,12 @@
 package p1;
 
 public class Segment extends TrafficLight{
-
+    private Station startStation , endStation;
     @Override public void acceptTrain(Train train) {super.acceptTrain(train);}
-
     @Override public boolean close() {return super.close();}
-
     @Override public boolean hasTrain() {return super.hasTrain();}
-
     @Override public boolean isOpen() {return super.isOpen();}
-
     @Override public boolean open() {return super.open();}
-
-    @Override public void releaseTrain(Train train) {
-        super.releaseTrain(train);}
-
+    @Override public void releaseTrain(Train train) {super.releaseTrain(train);}
     @Override public boolean verify() {return super.verify();}  
 }
