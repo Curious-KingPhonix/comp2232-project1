@@ -17,6 +17,16 @@ package p1;
 public class Segment extends TrafficLight implements Comparable<Segment>{
     private Station startStation , endStation;
     
+    public Segment(String name, RSStatus status, Station startStation, Station endStation) {
+        super(name, status);
+        this.startStation = startStation;
+        this.endStation = endStation;
+    }
+
+    public Segment(String name) {
+        super(name);
+    }
+
     public Station getStartStation() {
         return startStation;
     }

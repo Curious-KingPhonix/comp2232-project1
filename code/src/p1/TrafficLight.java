@@ -17,9 +17,23 @@ package p1;
 public class TrafficLight extends Station{
     private int id;
     private Light colour;
+    
+    public TrafficLight(String name, RSStatus status, int id, Light colour) {
+        super(name, status);
+        this.id = id;
+        this.colour = colour;
+    }
+
+    public TrafficLight(String name, RSStatus status) {
+        super(name, status);
+    }
+    
+    public TrafficLight(String name) {
+        super(name);
+    }
+
     protected void change(){if(this.colour == Light.Red) this.colour=Light.Green; else this.colour = Light.Red; }
     public void changeLight() {this.change();};
     public boolean lightColour(){return (this.colour==Light.Green);}
-    @Override
-    public boolean verify() {return (colour != null);}
+    @Override public boolean verify() {return (colour != null);}
 }

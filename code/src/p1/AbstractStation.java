@@ -17,6 +17,21 @@ package p1;
 public abstract class AbstractStation implements Verifiable{
     protected String name;
     protected RSStatus status;
+    private boolean IN_USE = true;
+    public AbstractStation() {
+        this.IN_USE = false;
+    }
+
+    public AbstractStation(String name) {
+        this.name = name;
+        this.status = RSStatus.Open;
+    }
+
+    public AbstractStation(String name, RSStatus status) {
+        this.name = name;
+        this.status = status;
+    }
+    
     public boolean verify(){ return (name.isBlank() || name.isEmpty() ); };
     abstract public boolean close();
     abstract public boolean open();

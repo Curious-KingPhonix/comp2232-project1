@@ -21,7 +21,15 @@ import java.util.List;
 public class Route extends TrainStop {
     private ArrayList<Segment> segemnts;
     private ArrayList<Station> stations;
+    
+    public Route(String name) {
+        super(name);
+    }
 
+    public Route(String name, RSStatus status) {
+        super(name, status);
+    }
+    
     /**
      * Traverses the segments sequentially until the start station is encountered again.
      * @return returns true if there're not duplicate segments, stations and the start station matches the end station of the route. 
@@ -52,7 +60,7 @@ public class Route extends TrainStop {
      * @return the starting {@code Station} of the route.
      */
     public Station getStart() { return this.startStation;}
-        /**
+    /**
      * Returns the ending {@code Station} of the route.
      * @return the ending {@code Station} of the route.
      */

@@ -15,6 +15,15 @@
 package p1;
 
 public class Station extends AbstractStation{
+    
+    public Station(String name, RSStatus status) {
+        super(name, status);
+    }
+    
+    public Station(String name) {
+        super(name);
+    }
+
     public boolean hasTrain(){return false;}
     public boolean isOpen(){return false;}
     public void acceptTrain(Train train){}

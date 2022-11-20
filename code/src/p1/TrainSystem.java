@@ -15,44 +15,53 @@
 package p1;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TrainSystem implements Verifiable{
     private ArrayList<Route> routes;
     private ArrayList<Station> stations;
     private ArrayList<Segment> segments;
     private ArrayList<Train> trains;
+    private SystemStatus status;
     /*In the future, developer plans to store Stations as vertices and segments as edges in a tree */
     // private HashMap<Pair<Station,Station>,Segment> routesTree;
-    
-    private SystemStatus status;
+
     public void addStation(String name){
-        Station search = null;
-        
+        this.stations.add(new Station(name));
     }
     public void removeStation(String name){
-        Station search = null;
-        
+        Searcher.remove(this.stations, name);
     }
     public void openStation(String name){
-        Station search = null;
-        
+        Searcher.open(this.stations, name);
     }
     public void closeStation(String name){
-        Station search = null;
-        
+        Searcher.close(this.stations, name);
     }
     public void addSegment(String name){
-
+        this.segments.add(new Segment(name));
     }
     public void removeSegment(String name){
-
+        Searcher.remove(this.segments, name);
     }
-    public void openSegment(String name){}
-    public void closeSegment(String name){}
-    public void addRoute(String name){}
-    public void removeRoute(String name){}
-    public void openRoute(String name){}
-    public void closeRoute(String name){}
+    public void openSegment(String name){
+        Searcher.open(this.segments, name);
+    }
+    public void closeSegment(String name){
+        Searcher.close(this.segments, name);
+    }
+    public void addRoute(String name){
+        this.routes.add(new Route(name));
+    }
+    public void removeRoute(String name){
+        Searcher.remove(this.stations, name);
+    }
+    public void openRoute(String name){
+        Searcher.open(this.stations, name);
+    }
+    public void closeRoute(String name){
+        Searcher.close(this.stations, name);
+    }
     public void addTrain(String name){}
     public void removeTrain(String name){}
     public void registerTrain(int id , Route route){}
@@ -83,27 +92,21 @@ public class TrainSystem implements Verifiable{
     public static class Pair<K,T>{
         private K key;
         private T value;
-        
         public K getKey() {
             return key;
         }
-
         public T getValue() {
             return value;
         }
-
         public void setKey(K key) {
             this.key = key;
         }
-
         public void setValue(T value) {
             this.value = value;
         }
-
         @Override
         public String toString() {
             return "Pair [key=" + key + ", value=" + value + "]";
         }
-        
     }
 }
