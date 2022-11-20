@@ -19,7 +19,11 @@ import java.util.HashMap;
 
 public class TrainSystem implements Verifiable{
     private ArrayList<Route> routes;
-    private HashMap<Pair<Station,Station>,Segment> routesTree;
+    private ArrayList<Station> stations;
+    private ArrayList<Segment> segments;
+    private ArrayList<Train> trains;
+    /*In the future, developer plans to store Stations as vertices and segments as edges in a tree */
+    // private HashMap<Pair<Station,Station>,Segment> routesTree;
     
     private SystemStatus status;
     public void addStation(String name){}
@@ -51,8 +55,16 @@ public class TrainSystem implements Verifiable{
     public void setStopped(){}
     public void currentStatus(){}
     public void advance(){}
-    @Override public boolean verify() { return false; }
+    @Override public boolean verify() { return 
+        routes.stream().allMatch((t)->{return t.verify();}) &&
+        segments.stream().allMatch((t)->{return t.verify();}) &&
+        stations.stream().allMatch((t)->{return t.verify();}) &&
+        trains.stream().allMatch((t)->{return t.verify();});
+     }
 
+    /**
+     * A convenience class to represent name-value pairs.
+     */
     public static class Pair<K,T>{
         private K key;
         private T value;

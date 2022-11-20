@@ -2,12 +2,12 @@ package p1;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
 public class Route extends TrainStop {
     private ArrayList<Segment> segemnts;
-    
+    private ArrayList<Station> stations;
+
     /**
      * Traverses the segments sequentially until the start station is encountered again.
      * @return returns true if there're not duplicate segments, stations and the start station matches the end station of the route. 
@@ -36,8 +36,23 @@ public class Route extends TrainStop {
     public Station getStart() { return null;}
     public Station getEnd() { return null;}
     public Station getNextStation(String station){return null;};
-    public Station getPreviousStation(String station){return null;};
+    /**
+     * Returns the previous station from the current {@code Station}.
+     * @param station the station to look from.
+     * @return A reference to the {@Station} otherwise null.
+     */
+    public Station getPreviousStation(String station){
+        Station prevStation = null;
+        for (Station stat : this.stations) {
+            if(stat.name ==  station) break; 
+            prevStation = stat;
+        }
+        return prevStation;
+    };
     public boolean canGetTo(String station){return false;}
+    public ArrayList<Station> getStationList() {
+        return stations;
+    }
     /**
      * Appends a single segment to the route.
      * Updates the end station of the route.
@@ -48,6 +63,8 @@ public class Route extends TrainStop {
             this.segemnts.add(segment);
             if(this.segemnts.size() == 1) this.startStation = segment.getStartStation();
             this.endStation = segment.getEndStation();
+            this.stations.add(segment.getStartStation());
+            this.stations.add(segment.getEndStation());
         }
     };
     /**
@@ -56,7 +73,6 @@ public class Route extends TrainStop {
      * @param segments a list of segments to be appended.
     */
     public void addSegments(List<Segment> segments){
-        this.segemnts.addAll(segments);
         this.endStation = this.segemnts.get(this.segemnts.size()-1).getEndStation();
     };
     public void removeSegment(String segment){};
