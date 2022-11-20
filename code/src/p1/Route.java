@@ -1,3 +1,17 @@
+// Copyright 2022 Kyle King
+// 
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// 
+//     http://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 package p1;
 
 import java.util.ArrayList;
@@ -33,9 +47,29 @@ public class Route extends TrainStop {
         }
         return isRoundTrip && homeStation.equals(prevStation);
     }
-    public Station getStart() { return null;}
-    public Station getEnd() { return null;}
-    public Station getNextStation(String station){return null;};
+    /**
+     * Returns the starting {@code Station} of the route.
+     * @return the starting {@code Station} of the route.
+     */
+    public Station getStart() { return this.startStation;}
+        /**
+     * Returns the ending {@code Station} of the route.
+     * @return the ending {@code Station} of the route.
+     */
+    public Station getEnd() { return this.endStation;}
+    /**
+     * Returns the next station from the current {@code Station}.
+     * @param station the station to look from.
+     * @return A reference to the {@Station} otherwise null.
+     */
+    public Station getNextStation(String station){
+        Station nextStation = null;
+        for(int i = this.stations.size() - 1; i >= 0 ; i--){
+            if(this.stations.get(i).name ==  station) break; 
+            nextStation = this.stations.get(i);
+        }
+        return nextStation;
+    }
     /**
      * Returns the previous station from the current {@code Station}.
      * @param station the station to look from.
@@ -49,7 +83,16 @@ public class Route extends TrainStop {
         }
         return prevStation;
     };
-    public boolean canGetTo(String station){return false;}
+    /**
+     * Checks to see if this {@code Route} can reach {@code Station} 
+     * @param station the {@code Station} to be reached.
+     * @return true if the {@code Route} contains this {@code Station}, otherwise false.
+     */
+    public boolean canGetTo(String station){return this.stations.stream().anyMatch((t)->{return (t.name == station);});}
+    /**
+     * Returns the list of stations in this {@code Route}.
+     * @return an {@code ArrayList} of @{code Station} which are present in this {@code Route}.
+     */
     public ArrayList<Station> getStationList() {
         return stations;
     }
@@ -75,14 +118,59 @@ public class Route extends TrainStop {
     public void addSegments(List<Segment> segments){
         this.endStation = this.segemnts.get(this.segemnts.size()-1).getEndStation();
     };
-    public void removeSegment(String segment){};
-    public void containsSegment(String segment){};
-    public void changeLight(String startOfSegment){};
+    /**
+     * Attempts to remove a {@code Segment} from this {@code Route} and removes each {@code Station} after the segment.
+     * @param segment the {@code Segment} to be removed.
+     */
+    public void removeSegment(String segment){
+        Segment searchSegment = null;
+        for(Segment seg : this.segemnts){
+            if( seg.name == segment){
+                searchSegment = seg;
+                break;
+            }
+        }
+        if(searchSegment != null){
+            Station startStation = searchSegment.getStartStation();
+            List<Station> sbList = this.stations.subList(this.segemnts.indexOf(startStation), this.segemnts.size()-1);
+            this.stations.removeAll(sbList);
+        }
+    };
+    /**
+     * Returns true if segment is in route.
+     * @param segment segment to be searched.
+     * @return true if segment is present in list ; otherwise, false.
+     */
+    public boolean containsSegment(String segment){
+        for (Segment seg : segemnts) {
+            if(seg.name == segment) return true;
+        }
+        return false;
+    };
+    /**
+     * Changes the light of a segment.
+     * @param startOfSegment the segment to change the light of.
+     */
+    public void changeLight(String startOfSegment){
+        for (Segment segment : segemnts) {
+            if(segment.name == startOfSegment){
+                segment.changeLight();
+            }
+        }
+    };
+    /**
+     * 
+     */
     @Override public boolean verify() {
         return super.verify() &&
         segemnts.stream().allMatch((segment)->{return segment.verify();}) &&
         !this.isRoundTrip();
     }
-    @Override public boolean close() {return false;}
-    @Override public boolean open() {return false;} 
+    @Override public boolean close() {
+
+        return false;
+    }
+    @Override public boolean open() {
+        return false;
+    } 
 }
