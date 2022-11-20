@@ -5,5 +5,7 @@ public class TrafficLight extends Station{
     private Light colour;
     protected void change(){ }
     public void changeLight() { }
-    public boolean lightColour(){return true;}   
+    public boolean lightColour(){return true;}
+    @Override
+    public boolean verify() {return (colour != null);}
 }

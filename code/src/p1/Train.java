@@ -1,8 +1,10 @@
 package p1;
 
 public class Train implements Verifiable {
+    private Route route;
     private int id , timeRegistered , startTime;
     private Station currentLocation;
+    
     public boolean isRegistered(){return true;}
     public boolean whenRegistered(){return true;}
     public int register(int time){return 0;}
@@ -11,5 +13,5 @@ public class Train implements Verifiable {
     public String currentStation(){return null;}
     public String nextStation(){return null;}
     public void changeRoute(Route route){}
-    @Override public boolean verify() {return false;}
+    @Override public boolean verify() {return route.verify() && (this.id >0);}
 }

@@ -14,7 +14,13 @@
 
 package p1;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class TrainSystem implements Verifiable{
+    private ArrayList<Route> routes;
+    private HashMap<Pair<Station,Station>,Segment> routesTree;
+    
     private SystemStatus status;
     public void addStation(String name){}
     public void removeStation(String name){}
@@ -46,4 +52,31 @@ public class TrainSystem implements Verifiable{
     public void currentStatus(){}
     public void advance(){}
     @Override public boolean verify() { return false; }
+
+    public static class Pair<K,T>{
+        private K key;
+        private T value;
+        
+        public K getKey() {
+            return key;
+        }
+
+        public T getValue() {
+            return value;
+        }
+
+        public void setKey(K key) {
+            this.key = key;
+        }
+
+        public void setValue(T value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return "Pair [key=" + key + ", value=" + value + "]";
+        }
+        
+    }
 }

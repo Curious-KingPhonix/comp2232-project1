@@ -14,10 +14,6 @@
 
 package p1;
 
-public abstract class AbstractStation implements Verifiable{
-    protected String name;
-    protected RSStatus status;
-    public boolean verify(){ return (name.isBlank() || name.isEmpty() ); };
-    abstract public boolean close();
-    abstract public boolean open();
+public abstract class TrainStop extends AbstractStation{
+    protected Station startStation , endStation;
 }

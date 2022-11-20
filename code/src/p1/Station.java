@@ -21,5 +21,4 @@ public class Station extends AbstractStation{
     public void releaseTrain(Train train){}
     @Override public boolean close() {return false;}
     @Override public boolean open() {return false;}
-    @Override public boolean verify() {return false;} 
 }
