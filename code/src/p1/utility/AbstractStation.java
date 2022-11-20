@@ -19,18 +19,18 @@ import p1.Train;
 import p1.TrainSystem;
 
 public abstract class AbstractStation extends StationAttributes{
-    private Train currentTrain;
+    private Train trainInStation;
     
-    public AbstractStation(String name, RSStatus status, TrainSystem trainSystem, Train currentTrain) {
+    public AbstractStation(String name, RSStatus status, TrainSystem trainSystem, Train trainInStation) {
         super(name, status, trainSystem);
-        this.currentTrain = currentTrain;
+        this.trainInStation = trainInStation;
     }
     /**
      * Checks if there's a train occupying this station or stop.
      * @return true if a train is currently docked in this station; otherwise, false.
      */
     public boolean hasTrain(){
-        return (currentTrain == null);
+        return (trainInStation == null);
     }
     /**
      * Checks if this station is open.
@@ -45,15 +45,15 @@ public abstract class AbstractStation extends StationAttributes{
      * @param train train to docked.
      */
     public void acceptTrain(Train train){
-        if( this.currentTrain != null ) return;
-        this.currentTrain = train;
+        if( this.trainInStation != null ) return;
+        this.trainInStation = train;
     }
     /**
      * Removes train as docked in this station.
      * @param train
      */
     public void releaseTrain(Train train){
-        if(this.currentTrain.getId() == train.getId()) this.currentTrain = null;
+        if(this.trainInStation.getId() == train.getId()) this.trainInStation = null;
     }
     
 }

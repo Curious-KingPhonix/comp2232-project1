@@ -17,7 +17,7 @@ package p1.utility;
 import java.util.ArrayList;
 
 public class Searcher {
-    public static <T extends AbstractStation> T getElementByName(ArrayList< T > elementList, String name){
+    public static <T extends StationAttributes> T getElementByName(ArrayList< T > elementList, String name){
         T searchElement = null; 
         for (T searchQuery : elementList) {
             if( searchQuery.name == name) searchElement = searchQuery;
@@ -26,20 +26,20 @@ public class Searcher {
     }
 
     /* Consider making a factory function for Station,Segment & Route.   
-    public static <T extends AbstractStation> void add(ArrayList<T> list,String name){
+    public static <T extends StationAttributes> void add(ArrayList<T> list,String name){
         list.add();
     } */
-    public static <T extends AbstractStation> void remove(ArrayList<T> list,String name){
+    public static <T extends StationAttributes> void remove(ArrayList<T> list,String name){
         T stat = Searcher.getElementByName(list, name);
         if( stat != null ) list.remove(stat);
     }
-    public static <T extends AbstractStation> void open(ArrayList<T> list,String name){
+    public static <T extends StationAttributes> void open(ArrayList<T> list,String name){
         T stat = Searcher.getElementByName(list, name);
         if( stat != null ){
             stat.open();
         }
     }
-    public static <T extends AbstractStation> void close(ArrayList<T> list,String name){
+    public static <T extends StationAttributes> void close(ArrayList<T> list,String name){
         T stat = Searcher.getElementByName(list, name);
         if( stat != null ){
             stat.close();

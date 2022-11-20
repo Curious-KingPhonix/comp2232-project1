@@ -15,8 +15,6 @@
 package p1;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import p1.utility.Searcher;
 import p1.utility.Verifiable;
 
@@ -26,6 +24,7 @@ public class TrainSystem implements Verifiable{
     private ArrayList<Segment> segments;
     private ArrayList<Train> trains;
     private SystemStatus status;
+    
     /*In the future, developer plans to store Stations as vertices and segments as edges in a tree */
     // private HashMap<Pair<Station,Station>,Segment> routesTree;
 
@@ -65,51 +64,73 @@ public class TrainSystem implements Verifiable{
     public void closeRoute(String name){
         Searcher.close(this.stations, name);
     }
-    public void addTrain(String name){}
-    public void removeTrain(String name){}
-    public void registerTrain(int id , Route route){}
-    public void deRegisterTrain(int train){}
-    public boolean containsStation(String station){return false;}
-    public boolean containsSegment(String segment){return false;}
-    public boolean containsRoute(String route){return false;}
-    public boolean containsTrain(int train){return false;}
-    public String getStationInfo(String station){return null;}
-    public String getSegmentInfo(String station){return null;}
-    public String getRouteInfo(String station){return null;}
-    public String getTrainInfo(int train ){return null;}
-    public void setToWorking(){}
-    public void setPaused(){}
-    public void setStopped(){}
-    public void currentStatus(){}
-    public void advance(){}
+    
+    public void addTrain(Train train){
+        this.trains.add(train);
+    }
+    public void removeTrain(int id){
+        for(int i = 0 ; i < this.trains.size() ; i++)
+            if(this.trains.get(i).getId() == id) {
+                this.trains.remove(id);
+                break;
+            }
+    }
+    public void registerTrain(int id , Route route){
+        Train new_train = new Train(route,id);
+        this.addTrain(new_train);
+    }
+    public void deRegisterTrain(int train){
+        this.removeTrain(train);
+    }
+    public boolean containsStation(String station){
+        return Searcher.getElementByName(this.stations, station) != null;
+    }
+    public boolean containsSegment(String segment){
+        return Searcher.getElementByName(this.segments, segment) != null;
+    }
+    public boolean containsRoute(String route){
+        return Searcher.getElementByName(this.routes, route) != null;
+    }
+    public boolean containsTrain(int train){
+        for(int i = 0 ; i < this.trains.size() ; i++)
+            if( this.trains.get(i).getId() == train) return true;
+        return false;
+    }
+    
+    public String getStationInfo(String station){
+        return Searcher.getElementByName(this.stations, station).toString();
+    }
+    public String getSegmentInfo(String segment){
+        return Searcher.getElementByName(this.segments, segment).toString();
+    }
+    public String getRouteInfo(String route){
+        return Searcher.getElementByName(this.routes, route).toString();
+    }
+    public String getTrainInfo(int train ){
+        for(int i = 0 ; i < this.trains.size() ; i++)
+        if( this.trains.get(i).getId() == train) return this.trains.get(i).toString();
+        return null;
+    }
+    
+    public void setToWorking(){
+        this.status = SystemStatus.Operational;
+    }
+    public void setPaused(){
+        this.status = SystemStatus.Deadlocked;
+    }
+    public void setStopped(){
+        this.status = SystemStatus.Finished;
+    }
+    public SystemStatus getCurrentStatus(){
+        return this.status;
+    }
+
     @Override public boolean verify() { return 
         routes.stream().allMatch((t)->{return t.verify();}) &&
         segments.stream().allMatch((t)->{return t.verify();}) &&
         stations.stream().allMatch((t)->{return t.verify();}) &&
         trains.stream().allMatch((t)->{return t.verify();});
-     }
-
-    /**
-     * A convenience class to represent name-value pairs.
-     */
-    public static class Pair<K,T>{
-        private K key;
-        private T value;
-        public K getKey() {
-            return key;
-        }
-        public T getValue() {
-            return value;
-        }
-        public void setKey(K key) {
-            this.key = key;
-        }
-        public void setValue(T value) {
-            this.value = value;
-        }
-        @Override
-        public String toString() {
-            return "Pair [key=" + key + ", value=" + value + "]";
-        }
     }
+    
+    public void advance(){}
 }

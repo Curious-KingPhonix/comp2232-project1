@@ -14,15 +14,19 @@
 
 package p1;
 
+import java.util.ArrayList;
+
 import p1.utility.AbstractStation;
 import p1.utility.LightListener;
 
 public class Segment extends AbstractStation implements Comparable<Segment> , LightListener{
-    private Station startStation , endStation;
+    private Station segmentStart , segmentEnd;
     private TrafficLight trafficLight;
-
+    private ArrayList<Route> routes;
+    
     public Segment(String name, RSStatus status, TrainSystem trainSystem, Train currentTrain) {
         super(name, status, trainSystem, currentTrain);
+        this.trafficLight = new TrafficLight(0, Light.Red, this);
     }
 
     @Override public void changeLight() {this.trafficLight.change();};
@@ -30,17 +34,17 @@ public class Segment extends AbstractStation implements Comparable<Segment> , Li
     @Override public boolean lightColour() {return (this.trafficLight.getColour()==Light.Green);}
 
     public Station getStartStation() {
-        return startStation;
+        return segmentStart;
     }
     public Station getEndStation() {
-        return endStation;
+        return segmentEnd;
     }
     @Override public boolean verify() {
         boolean superVar = super.verify() &&
-        this.startStation.verify() && this.endStation.verify() &&
-        !this.startStation.equals(this.endStation) 
-        && this.startStation.getStatus() == this.endStation.getStatus() 
-        && this.startStation.getStatus() == RSStatus.Open;
+        this.segmentStart.verify() && this.segmentEnd.verify() &&
+        !this.segmentStart.equals(this.segmentEnd) 
+        && this.segmentStart.getStatus() == this.segmentEnd.getStatus() 
+        && this.segmentStart.getStatus() == RSStatus.Open;
         return superVar;
     }
     /**
@@ -49,7 +53,7 @@ public class Segment extends AbstractStation implements Comparable<Segment> , Li
      * @return A non-negative integer in the range [0,1]. 0 represents no match while 1 means there's a match by name or by station.
      */
     @Override public int compareTo(Segment o) {
-        return ((this.name == o.name || this.startStation == o.startStation && this.endStation == o.endStation)?1:0);
+        return ((this.name == o.name || this.segmentStart == o.segmentStart && this.segmentEnd == o.segmentEnd)?1:0);
     }
 
     public TrafficLight getTrafficLight() {

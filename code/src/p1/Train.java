@@ -20,6 +20,15 @@ public class Train implements Verifiable {
     private Route route;
     private int id , timeRegistered , startTime;
     private Station currentLocation;
+    
+    public Train(int id) {
+        this.id = id;
+    }
+    
+    public Train(Route route, int id) {
+        this.route = route;
+        this.id = id;
+    }
 
     public int getId() {
         return id;

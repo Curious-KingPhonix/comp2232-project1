@@ -24,6 +24,7 @@ public class Route extends StationAttributes {
     
     private ArrayList<Segment> segemnts;
     private ArrayList<Station> stations;
+    private ArrayList<Train> trainsForRoute;
     private Station startStation;
     private Station endStation;
     
@@ -176,8 +177,10 @@ public class Route extends StationAttributes {
         segemnts.stream().allMatch((segment)->{return segment.verify();}) &&
         !this.isRoundTrip();
     }
-    /**
-     * Closes the route.
-     * @retunrs true if the object is being closed. otherwise false.
-     */
+
+    @Override
+    public boolean equals(Object obj) {
+        Route route = (Route)(obj);
+        return super.equals(obj) || route.getName() == this.getName();
+    }
 }

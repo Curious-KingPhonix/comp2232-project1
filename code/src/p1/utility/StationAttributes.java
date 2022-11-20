@@ -26,13 +26,26 @@ public abstract class StationAttributes implements Verifiable{
         this.status = status;
         this.trainSystem = trainSystem;
     }
-
-    public boolean verify(){ return (name.isBlank() || name.isEmpty() ); };
+    /**
+     * Ensures the object is verfied.
+     * @return true if the object is verified.
+     */
+    public boolean verify() { 
+        return (name.isBlank() || name.isEmpty() );
+    };
+    /**
+     * Closes the route.
+     * @retunrs true if the object is being closed. otherwise false.
+     */
     public boolean close(){
        if(this.status == RSStatus.ClosedForMaintenance) return false;
        this.status = RSStatus.ClosedForMaintenance;
        return true;
     }
+    /**
+     * Opens the route.
+     * @retunrs true if the object is being closed; otherwise, false.
+     */
     public boolean open(){
        if(this.status == RSStatus.Open) return false;
        this.status = RSStatus.Open;

@@ -12,15 +12,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package p1;
-
-import java.util.ArrayList;
-
-import p1.utility.AbstractStation;
-
-public class Station extends AbstractStation{
-    private ArrayList<Segment> startSegment,endSegment;
-    public Station(String name, RSStatus status, TrainSystem trainSystem, Train currentTrain) {
-        super(name, status, trainSystem, currentTrain);
-    }
+package p1.utility;
+    /**
+     * A convenience class to represent name-value pairs.
+     */
+public class Pair<K,T>{
+        private K key;
+        private T value;
+        public K getKey() {
+            return key;
+        }
+        public T getValue() {
+            return value;
+        }
+        public void setKey(K key) {
+            this.key = key;
+        }
+        public void setValue(T value) {
+            this.value = value;
+        }
+        @Override
+        public String toString() {
+            return "Pair [key=" + key + ", value=" + value + "]";
+        }
 }

@@ -19,6 +19,13 @@ import p1.utility.Verifiable;
 public class TrafficLight implements Verifiable{
     private int id;
     private Light colour;
+    private Segment segment;
+    
+    public TrafficLight(int id, Light colour, Segment segment) {
+        this.id = id;
+        this.colour = colour;
+        this.segment = segment;
+    }
     
     public int getId() {
         return id;
