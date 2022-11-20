@@ -15,7 +15,6 @@
 package p1;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class TrainSystem implements Verifiable{
     private ArrayList<Route> routes;
@@ -26,12 +25,28 @@ public class TrainSystem implements Verifiable{
     // private HashMap<Pair<Station,Station>,Segment> routesTree;
     
     private SystemStatus status;
-    public void addStation(String name){}
-    public void removeStation(String name){}
-    public void openStation(String name){}
-    public void closeStation(String name){}
-    public void addSegment(String name){}
-    public void removeSegment(String name){}
+    public void addStation(String name){
+        Station search = null;
+        
+    }
+    public void removeStation(String name){
+        Station search = null;
+        
+    }
+    public void openStation(String name){
+        Station search = null;
+        
+    }
+    public void closeStation(String name){
+        Station search = null;
+        
+    }
+    public void addSegment(String name){
+
+    }
+    public void removeSegment(String name){
+
+    }
     public void openSegment(String name){}
     public void closeSegment(String name){}
     public void addRoute(String name){}

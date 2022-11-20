@@ -14,8 +14,6 @@
 
 package p1;
 
-import java.util.Comparator;
-
 public class Segment extends TrafficLight implements Comparable<Segment>{
     private Station startStation , endStation;
     
