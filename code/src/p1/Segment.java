@@ -28,17 +28,11 @@ public class Segment extends AbstractStation implements Comparable<Segment> , Li
         super(name, status, trainSystem, currentTrain);
         this.trafficLight = new TrafficLight(0, Light.Red, this);
     }
-
+    
     @Override public void changeLight() {this.trafficLight.change();};
-
     @Override public boolean lightColour() {return (this.trafficLight.getColour()==Light.Green);}
-
-    public Station getStartStation() {
-        return segmentStart;
-    }
-    public Station getEndStation() {
-        return segmentEnd;
-    }
+    public Station getStartStation() {return segmentStart;}
+    public Station getEndStation() {return segmentEnd;}
     @Override public boolean verify() {
         boolean superVar = super.verify() &&
         this.segmentStart.verify() && this.segmentEnd.verify() &&

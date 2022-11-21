@@ -13,11 +13,18 @@
 // limitations under the License.
 
 package p1.utility;
-
-import java.util.ArrayList;
+import java.util.Collection;
 
 public class Searcher {
-    public static <T extends StationAttributes> T getElementByName(ArrayList< T > elementList, String name){
+    /**
+     * Searches a {@code Collection} of classes that extends the StationAttributes class and returns it.<br>
+     * This method iterates through the {@code Collection} and returns a reference to the class who's name attribute matches the parameter.
+     * @param <T> A class that extends {@code StationAttributes}
+     * @param elementList A @{code Collection} of classes to search through.
+     * @param name The name of a {@code StationAttributes} child class to search for. 
+     * @return A reference to {@code StationAttributes} subclass that matches the parameter. Otherwise, returns null.
+     */
+    public static <T extends StationAttributes> T getElementByName(Collection< T > elementList, String name){
         T searchElement = null; 
         for (T searchQuery : elementList) {
             if( searchQuery.name == name) searchElement = searchQuery;
@@ -26,21 +33,43 @@ public class Searcher {
     }
 
     /* Consider making a factory function for Station,Segment & Route.   
-    public static <T extends StationAttributes> void add(ArrayList<T> list,String name){
+    public static <T extends StationAttributes> void add(Collection<T> list,String name){
         list.add();
     } */
-    public static <T extends StationAttributes> void remove(ArrayList<T> list,String name){
-        T stat = Searcher.getElementByName(list, name);
-        if( stat != null ) list.remove(stat);
+
+    /**
+     * Searches a {@code Collection} of classes that extends the StationAttributes class and attempts to remove it.<br>
+     * This method iterates through the {@code Collection} and removes the element from the list who's name attribute matches the parameter.
+     * @param <T> A class that extends {@code StationAttributes}
+     * @param elementList A @{code Collection} of classes to search through.
+     * @param name The name of a {@code StationAttributes} child class to search for. 
+    */
+    public static <T extends StationAttributes> void remove(Collection<T> elementList,String name){
+        T stat = Searcher.getElementByName(elementList, name);
+        if( stat != null ) elementList.remove(stat);
     }
-    public static <T extends StationAttributes> void open(ArrayList<T> list,String name){
-        T stat = Searcher.getElementByName(list, name);
+    /**
+     * Searches a {@code Collection} of classes that extends the StationAttributes class and attempts to opens it.<br>
+     * This method iterates through the {@code Collection} and opens element who's name attribute matches the parameter.
+     * @param <T> A class that extends {@code StationAttributes}
+     * @param elementList A @{code Collection} of classes to search through.
+     * @param name The name of a {@code StationAttributes} child class to search for. 
+    */
+    public static <T extends StationAttributes> void open(Collection<T> elementList,String name){
+        T stat = Searcher.getElementByName(elementList, name);
         if( stat != null ){
             stat.open();
         }
     }
-    public static <T extends StationAttributes> void close(ArrayList<T> list,String name){
-        T stat = Searcher.getElementByName(list, name);
+    /**
+     * Searches a {@code Collection} of classes that extends the StationAttributes class and attempts to closes it.<br>
+     * This method iterates through the {@code Collection} and closes the element who's name attribute matches the parameter.
+     * @param <T> A class that extends {@code StationAttributes}
+     * @param elementList A @{code Collection} of classes to search through.
+     * @param name The name of a {@code StationAttributes} child class to search for. 
+    */
+    public static <T extends StationAttributes> void close(Collection<T> elementList,String name){
+        T stat = Searcher.getElementByName(elementList, name);
         if( stat != null ){
             stat.close();
         }

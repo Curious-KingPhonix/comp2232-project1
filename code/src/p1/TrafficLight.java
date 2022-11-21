@@ -26,13 +26,8 @@ public class TrafficLight implements Verifiable{
         this.colour = colour;
         this.segment = segment;
     }
-    
-    public int getId() {
-        return id;
-    }
-    public Light getColour() {
-        return colour;
-    }
+    public int getId() {return id;}
+    public Light getColour() {return colour;}
     protected void change(){if(this.colour == Light.Red) this.colour=Light.Green; else this.colour = Light.Red; }
     @Override public boolean verify() {return (colour != null);}
 }

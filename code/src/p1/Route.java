@@ -31,7 +31,6 @@ public class Route extends StationAttributes {
     public Route(String name, RSStatus status, TrainSystem trainSystem) {
         super(name, status, trainSystem);
     }
-    
     /**
      * Traverses the segments sequentially until the start station is encountered again.
      * @return returns true if there're not duplicate segments, stations and the start station matches the end station of the route. 
@@ -177,6 +176,4 @@ public class Route extends StationAttributes {
         segemnts.stream().allMatch((segment)->{return segment.verify();}) &&
         !this.isRoundTrip();
     }
-
-
 }
