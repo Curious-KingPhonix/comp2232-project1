@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package p1;
+package proj.p1;
 
 import java.util.ArrayList;
 
-import p1.utility.AbstractStation;
-import p1.utility.LightListener;
+import proj.p1.utility.AbstractStation;
+import proj.p1.utility.LightListener;
 
 public class Segment extends AbstractStation implements Comparable<Segment> , LightListener{
     private Station segmentStart , segmentEnd;
@@ -58,9 +58,5 @@ public class Segment extends AbstractStation implements Comparable<Segment> , Li
 
     public TrafficLight getTrafficLight() {
         return trafficLight;
-    }
-    @Override public boolean equals(Object obj) {
-        Segment segment = (Segment)(obj);
-        return super.equals(obj) || segment.getName() == this.getName();
     }
 }

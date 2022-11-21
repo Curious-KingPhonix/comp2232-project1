@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package p1.utility;
-import p1.RSStatus;
-import p1.TrainSystem;
+package proj.p1.utility;
+import proj.p1.RSStatus;
+import proj.p1.TrainSystem;
 
 public abstract class StationAttributes implements Verifiable{
     protected String name;
@@ -56,9 +56,5 @@ public abstract class StationAttributes implements Verifiable{
     }
     public RSStatus getStatus() {
         return status;
-    }
-    @Override public boolean equals(Object obj) {
-        StationAttributes stats = (StationAttributes)(obj);
-        return super.equals(obj) || stats.getName() == this.getName();
     }
 }

@@ -12,13 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package p1;
+package proj.p1;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import p1.utility.StationAttributes;
+import proj.p1.utility.StationAttributes;
 
 public class Route extends StationAttributes {
     
@@ -178,5 +178,9 @@ public class Route extends StationAttributes {
         !this.isRoundTrip();
     }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        Route route = (Route)(obj);
+        return super.equals(obj) || route.getName() == this.getName();
+    }
 }
